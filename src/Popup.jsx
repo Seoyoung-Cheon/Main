@@ -11,7 +11,7 @@ const Popup = () => {
         zIndex: 1000,
         width: "600px",
         height: "830px",
-        backgroundColor: "white",
+        backgroundColor: "#F7F7F7",
         borderRadius: "15px",
         boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
         display: "flex",
@@ -24,9 +24,9 @@ const Popup = () => {
           padding: "15px",
           borderBottom: "1px solid #eee",
           fontWeight: "bold",
-          backgroundColor: "#BEA1A5",
+          backgroundColor: "#948F78",
           borderRadius: "15px 15px 0 0",
-          color: "black",
+          color: "white",
           fontFamily: "'Oswald', sans-serif",
           fontWeight: "600",
         }}
@@ -64,8 +64,8 @@ const Popup = () => {
         {/* 사용자 메시지 */}
         <div
           style={{
-            backgroundColor: "#BEA1A5",
-            color: "black",
+            backgroundColor: "#948F78",
+            color: "white",
             padding: "10px",
             borderRadius: "10px",
             maxWidth: "80%",
@@ -105,8 +105,8 @@ const Popup = () => {
         <button
           style={{
             padding: "8px 15px",
-            backgroundColor: "#BEA1A5",
-            color: "black",
+            backgroundColor: "#948F78",
+            color: "white",
             border: "none",
             borderRadius: "20px",
             cursor: "pointer",

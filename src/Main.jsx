@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Popup from "./Popup";
 import "./Main.css";
-import LawInfo from "./Sub";
 
 const Main = () => {
+  const [showPopup, setShowPopup] = useState(true);
+
   return (
     <div
       className="main-container"
@@ -18,7 +21,8 @@ const Main = () => {
             position: "absolute",
             left: "40px",
             top: "20px",
-            zIndex: 2,
+            zIndex: 10,
+            gap: "40px",
           }}
         >
           <div
@@ -33,7 +37,20 @@ const Main = () => {
           >
             Lawmang
           </div>
+          <Link
+            to="/list"
+            style={{
+              fontSize: "40px",
+              fontFamily: "'Oswald', sans-serif",
+              fontWeight: "200",
+              color: "white",
+              textDecoration: "none",
+            }}
+          >
+            판례
+          </Link>
         </div>
+
         <div style={{ position: "relative" }}>
           <div
             style={{
@@ -104,6 +121,7 @@ const Main = () => {
           Live your life like it's a masterpiece in progress.
           <br />I may not be perfect, but I am always authentic.
         </div>
+        {showPopup && <Popup onClose={() => setShowPopup(false)} />}
       </div>
       <div
         style={{
@@ -111,9 +129,7 @@ const Main = () => {
           width: "100%",
           boxSizing: "border-box",
         }}
-      >
-        <LawInfo />
-      </div>
+      ></div>
     </div>
   );
 };

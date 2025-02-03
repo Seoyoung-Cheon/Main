@@ -1,13 +1,14 @@
-import "./App.css";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Main from "./Main";
-import Popup from "./Popup";
+import List from "./List";
 
 function App() {
   return (
-    <div className="App">
-      <Main />
-      <Popup />
-    </div>
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/list" element={<List />} />
+    </Routes>
   );
 }
 
