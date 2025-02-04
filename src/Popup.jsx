@@ -1,10 +1,10 @@
 import React from "react";
 
-const Popup = () => {
+const Popup = ({ onClose }) => {
   return (
     <div
       style={{
-        position: "fixed",
+        position: "absolute",
         top: "50%",
         left: "77%",
         transform: "translate(-50%, -50%)",
@@ -23,15 +23,17 @@ const Popup = () => {
         style={{
           padding: "15px",
           borderBottom: "1px solid #eee",
-          fontWeight: "bold",
           backgroundColor: "#948F78",
           borderRadius: "15px 15px 0 0",
           color: "white",
           fontFamily: "'Oswald', sans-serif",
           fontWeight: "600",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        L a w C h a t
+        <span>L a w C h a t</span>
       </div>
 
       {/* 메시지 영역 */}

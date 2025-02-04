@@ -2,22 +2,42 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const List = () => {
+  // 판례 데이터 배열
+  const cases = [1, 2, 3, 4]; // 실제로는 API에서 받아올 데이터
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#f9fafb",
+        margin: 0,
+        padding: 0,
+        width: "100%",
+        overflow: "hidden",
+      }}
+    >
       {/* 네비게이션 바 */}
-      <nav style={{ backgroundColor: "#948F78", height: "100px" }}>
+      <nav
+        style={{
+          backgroundColor: "#948F78",
+          height: "8rem",
+          margin: 0,
+          padding: 0,
+          width: "100%",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: 1000,
+        }}
+      >
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            padding: "10px",
-            position: "relative",
-            left: "40px",
-            top: "20px",
-            gap: "40px",
-            zIndex: 2,
-            width: "98%",
+            width: "calc(100% - 80px)",
             maxWidth: "1920px",
+            margin: "0 auto",
+            paddingTop: "20px",
           }}
         >
           {/* 로고 */}
@@ -31,6 +51,9 @@ const List = () => {
               textDecoration: "none",
               whiteSpace: "nowrap",
               flex: "0 0 auto",
+              marginRight: "100px",
+              marginTop: "1rem",
+              marginLeft: "40px",
             }}
           >
             Lawmang
@@ -46,17 +69,32 @@ const List = () => {
               minWidth: "800px",
               maxWidth: "1000px",
               marginRight: "100px",
+              marginTop: "2rem",
             }}
           >
             {/* 검색창 */}
             <input
               type="text"
               placeholder="판례 검색하기"
-              className="w-full px-6 text-lg border-2  rounded-lg focus:outline-none focus:border-gray-400"
               style={{
                 width: "100%",
-                height: "40px",
+                height: "20px",
                 borderRadius: "10px",
+                backgroundColor: "white",
+                border: "2px solid #e5e7eb",
+                padding: "8px 12px",
+                fontSize: "16px",
+                color: "#666",
+                transition: "all 0.2s ease",
+                outline: "none",
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = "#1f2937";
+                e.target.style.backgroundColor = "#f9fafb";
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "#e5e7eb";
+                e.target.style.backgroundColor = "white";
               }}
             />
             {/* 검색 아이콘 */}
@@ -64,32 +102,54 @@ const List = () => {
               className="text-xl text-gray-400 hover:text-gray-600"
               aria-label="검색"
               style={{
-                fontSize: "30px",
+                fontSize: "20px",
                 flexShrink: 0,
                 borderRadius: "10px",
+                color: "#666",
+                backgroundColor: "white",
+                border: "2px solid #e5e7eb",
+                cursor: "pointer",
+                padding: "8px 12px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minWidth: "40px",
+                height: "40px",
+                transition: "all 0.2s ease",
+              }}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = "#f9fafb";
+                e.target.style.borderColor = "#d1d5db";
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = "white";
+                e.target.style.borderColor = "#e5e7eb";
               }}
             >
-              🔍
+              <i className="fas fa-search"></i>
             </button>
           </div>
         </div>
       </nav>
 
-      {/* 카테고리 버튼들 */}
+      {/* 카테고리 버튼들과 판례 리스트를 감싸는 컨테이너 */}
       <div
         style={{
-          maxWidth: "1400px", // 최대 너비 설정
-          margin: "0 auto", // 가운데 정렬
-          padding: "0 40px", // 좌우 패딩
-          marginTop: "60px", // 네비게이션 바와의 간격
+          width: "calc(100% - 240px)",
+          maxWidth: "1920px",
+          margin: "0 auto",
+          marginTop: "180px",
+          paddingLeft: "40px",
+          paddingRight: "40px",
         }}
       >
+        {/* 카테고리 버튼들 */}
         <div
           style={{
             display: "flex",
-            justifyContent: "center", // 가운데 정렬
+            justifyContent: "left",
             flexWrap: "wrap",
-            gap: "30px", // 버튼 간 간격
+            gap: "30px",
             marginBottom: "40px",
           }}
         >
@@ -97,21 +157,23 @@ const List = () => {
             <button
               key={category}
               style={{
-                padding: "20px 40px",
-                fontSize: "20px",
+                padding: "15px 40px",
+                marginTop: "10px",
+                fontSize: "15px",
                 fontWeight: "500",
-                backgroundColor: "white",
-                border: "2px solid #e5e7eb",
+                backgroundColor: "#f3f4f6",
+                border: "1px solid #d1d5db",
                 borderRadius: "8px",
-                transition: "all 0.2s",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
               }}
               onMouseOver={(e) => {
-                e.target.style.backgroundColor = "#f9fafb";
-                e.target.style.borderColor = "#3b82f6";
+                e.target.style.backgroundColor = "#e5e7eb";
+                e.target.style.borderColor = "#9ca3af";
               }}
               onMouseOut={(e) => {
-                e.target.style.backgroundColor = "white";
-                e.target.style.borderColor = "#e5e7eb";
+                e.target.style.backgroundColor = "#f3f4f6";
+                e.target.style.borderColor = "#d1d5db";
               }}
             >
               {category}
@@ -119,30 +181,117 @@ const List = () => {
           ))}
         </div>
 
+        {/* 총 개수 표시 */}
+        <div
+          style={{
+            marginBottom: "20px",
+            fontSize: "16px",
+            color: "#4b5563",
+            fontWeight: "500",
+          }}
+        >
+          Total : {cases.length}건
+        </div>
+
         {/* 판례 리스트 */}
-        <div className="grid gap-6">
-          {[1, 2, 3, 4].map((item) => (
+        <div
+          style={{
+            display: "grid",
+            gap: "24px",
+            width: "100%",
+          }}
+        >
+          {cases.map((item) => (
             <div
               key={item}
-              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100"
+              style={{
+                backgroundColor: "white",
+                padding: "24px",
+                borderRadius: "12px",
+                boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+                transition: "box-shadow 0.2s",
+                width: "100%",
+                cursor: "pointer",
+                border: "1px solid #e5e7eb",
+              }}
+              onMouseOver={(e) => {
+                if (e.currentTarget === e.target) {
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 6px rgba(0, 0, 0, 0.1)";
+                  e.currentTarget.style.borderColor = "#9ca3af";
+                }
+              }}
+              onMouseOut={(e) => {
+                if (e.currentTarget === e.target) {
+                  e.currentTarget.style.boxShadow =
+                    "0 1px 3px rgba(0, 0, 0, 0.1)";
+                  e.currentTarget.style.borderColor = "#d1d5db";
+                }
+              }}
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-semibold text-gray-800">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  marginBottom: "16px",
+                  pointerEvents: "none",
+                  border: "none",
+                }}
+              >
+                <h3
+                  style={{
+                    fontSize: "1.25rem",
+                    fontWeight: "600",
+                    color: "#1f2937",
+                    margin: 0,
+                    padding: 0,
+                    border: "none",
+                  }}
+                >
                   대법원 2024년 제{item}호
                 </h3>
-                <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">
+                <span
+                  style={{
+                    padding: "4px 12px",
+                    backgroundColor: "#eff6ff",
+                    color: "#2563eb",
+                    borderRadius: "9999px",
+                    fontSize: "0.875rem",
+                  }}
+                >
                   민사
                 </span>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p
+                style={{
+                  color: "#4b5563",
+                  marginBottom: "16px",
+                  pointerEvents: "none",
+                }}
+              >
                 채권자가 채무자의 제3채무자에 대한 채권을 가압류한 후 그
                 가압류를 본압류로 이전하지 아니한 상태에서...
               </p>
-              <div className="flex justify-between items-center text-sm text-gray-500">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  fontSize: "0.875rem",
+                  color: "#6b7280",
+                  pointerEvents: "none",
+                }}
+              >
                 <span>판결일자: 2024.03.15</span>
-                <button className="text-blue-500 hover:text-blue-600 font-medium">
+                <span
+                  style={{
+                    color: "#3b82f6",
+                    fontWeight: "500",
+                  }}
+                >
                   자세히 보기 →
-                </button>
+                </span>
               </div>
             </div>
           ))}
