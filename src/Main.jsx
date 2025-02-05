@@ -29,6 +29,7 @@ const Main = () => {
         position: "relative",
         overflowX: "hidden",
         overflowY: "visible",
+        fontFamily: "Oswald, sans-serif",
       }}
     >
       {/* 첫 번째 섹션 - 메인 비디오 */}
@@ -61,7 +62,7 @@ const Main = () => {
             display: "block",
           }}
           onLoadedMetadata={(e) => {
-            e.target.playbackRate = 0.7;
+            e.target.playbackRate = 0.7; // 비디오 재생 속도 조절
           }}
         />
 
@@ -93,7 +94,6 @@ const Main = () => {
           <div
             style={{
               fontSize: "2.5rem",
-              fontFamily: "Oswald, sans-serif",
               fontWeight: 200,
               color: "white",
             }}
@@ -105,7 +105,6 @@ const Main = () => {
             to="/list"
             style={{
               fontSize: "1.8rem",
-              fontFamily: "Oswald, sans-serif",
               fontWeight: 200,
               color: "white",
               textDecoration: "none",
@@ -123,27 +122,51 @@ const Main = () => {
             left: "5rem",
             color: "white",
             fontSize: "1.5rem",
-            fontFamily: "Oswald, sans-serif",
-            fontWeight: "bold",
+            fontWeight: "lighter",
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
             zIndex: 2,
+            opacity: 0, // 초기에는 투명하게
+            animation: "slideUp 1.5s ease-out forwards", // 애니메이션 적용
           }}
         >
+          <style>
+            {`
+              @keyframes slideUp {
+                0% {
+                  opacity: 0;
+                  transform: translateY(70px);
+                }
+                30% {
+                  opacity: 0;
+                }
+                100% {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+            `}
+          </style>
           <h3
             style={{
               fontSize: "2.25rem",
               marginBottom: "1rem",
-              fontFamily: "Oswald, sans-serif",
+              fontFamily: "'Nanum Gothic Coding', monospace",
             }}
           >
-            I don't follow the path; I create my own.
+            법률의 힘을 믿으세요
           </h3>
-          Success isn't about what you achieve, it's about who you become.
-          <br />
-          The greatest risk is not taking one.
-          <br />
-          Live your life like it's a masterpiece in progress.
-          <br />I may not be perfect, but I am always authentic.
+          <div style={{ fontFamily: "'Nanum Gothic Coding', monospace" }}>
+            법은 우리가 일상에서 마주치는 여러 어려움을 해결할 수 있는 강력한
+            도구입니다.
+            <br />
+            <br />
+            로망이 제공하는 서비스는 단순히 법을 적용하는 것 이상의 가치를
+            제공합니다.
+            <br />
+            <br />
+            법적 문제에 대해 올바르고 확실한 답을 찾고 싶다면, 저희와
+            함께하세요.
+          </div>
         </div>
 
         {showPopup && isFirstSection && (
@@ -159,7 +182,7 @@ const Main = () => {
           minHeight: "100vh",
           width: "100%",
           position: "relative",
-          backgroundColor: "#f9fafb",
+          zIndex: 2,
         }}
       >
         <Sub />
