@@ -83,7 +83,7 @@ const Main = () => {
         <div
           style={{
             position: "absolute",
-            left: "8rem",
+            left: "5rem",
             top: "2rem",
             display: "flex",
             alignItems: "center",
@@ -150,21 +150,25 @@ const Main = () => {
             style={{
               fontSize: "2.25rem",
               marginBottom: "1rem",
-              fontFamily: "'Nanum Gothic Coding', monospace",
+              fontFamily: "'Gothic A1', sans-serif",
+              fontWeight: "bold",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
             }}
           >
             법률의 힘을 믿으세요
           </h3>
-          <div style={{ fontFamily: "'Nanum Gothic Coding', monospace" }}>
+          <br />
+          <div
+            style={{
+              fontFamily: "'Gothic A1', sans-serif",
+              textShadow: "1px 1px 9px rgba(0, 0, 0, 1)",
+            }}
+          >
             법은 우리가 일상에서 마주치는 여러 어려움을 해결할 수 있는 강력한
             도구입니다.
             <br />
             <br />
-            로망이 제공하는 서비스는 단순히 법을 적용하는 것 이상의 가치를
-            제공합니다.
-            <br />
-            <br />
-            법적 문제에 대해 올바르고 확실한 답을 찾고 싶다면, 저희와
+            법적 문제에 대해 올바르고 확실한 답을 찾고 싶다면, 로망과
             함께하세요.
           </div>
         </div>

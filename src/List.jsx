@@ -53,7 +53,7 @@ const List = () => {
               flex: "0 0 auto",
               marginRight: "100px",
               marginTop: "1rem",
-              marginLeft: "40px",
+              marginLeft: "5rem",
             }}
           >
             Lawmang

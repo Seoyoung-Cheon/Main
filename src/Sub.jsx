@@ -88,7 +88,7 @@ const Sub = () => {
               height: "13px",
               borderRadius: "50%",
               border: "none",
-              backgroundColor: startIndex === index ? "#333" : "#999",
+              backgroundColor: startIndex === index ? "gray" : "white",
               cursor: "pointer",
               transition: "background-color 0.3s ease",
             }}
@@ -104,8 +104,6 @@ const Sub = () => {
       style={{
         width: "100%",
         minHeight: "100vh",
-        backgroundColor: "#dcdcdc",
-        padding: "2rem 0",
       }}
     >
       <style>
@@ -123,110 +121,129 @@ const Sub = () => {
         `}
       </style>
 
-      {/* 메인 제목 추가 */}
-      <h2
-        style={{
-          fontSize: "3rem",
-          fontWeight: "bold",
-          color: "#333",
-          textAlign: "center",
-          marginBottom: "5.5rem",
-          fontFamily: "Oswald, sans-serif",
-        }}
-      >
-        법률 관련 컨텐츠
-      </h2>
-
-      {/* YouTube 영상 섹션 */}
-      <div style={{ marginBottom: "5rem" }}>
-        <h3
-          style={{
-            fontSize: "2rem",
-            marginBottom: "2rem",
-            color: "#444",
-            paddingLeft: "75px",
-          }}
-        >
-          YouTube
-        </h3>
-        <div style={containerStyle}>
-          {getVisibleItems(youtubeVideos).map((video, index) => (
-            <div
-              key={`${video.id}-${startIndex}-${index}`}
-              style={{
-                ...cardStyle,
-                aspectRatio: "16/9",
-                animationDelay: `${index * 0.1}s`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.08)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-              }}
-            >
-              <iframe
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${video.embedId}`}
-                title="YouTube video"
-                frameBorder="0" //테두리 없음
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+      {/* 유튜브 배경색 영역 시작 */}
+      <div style={{ backgroundColor: "#E1DFD9", padding: "2rem 0 12rem 0" }}>
+        {/* YouTube 영상 섹션 */}
+        <div style={{ marginBottom: "8rem" }}>
+          <h3
+            style={{
+              fontSize: "4rem",
+              marginBottom: "5rem",
+              marginTop: "8rem",
+              color: "white",
+              textAlign: "center",
+              paddingLeft: "0",
+              WebkitTextStroke: "1px #c8c8c8",
+              textStroke: "1px #dcdcdc",
+            }}
+          >
+            YouTube
+          </h3>
+          <div style={containerStyle}>
+            {getVisibleItems(youtubeVideos).map((video, index) => (
+              <div
+                key={`${video.id}-${startIndex}-${index}`}
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  border: "none",
+                  ...cardStyle,
+                  aspectRatio: "16/9",
+                  animationDelay: `${index * 0.1}s`,
                 }}
-              />
-            </div>
-          ))}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.08)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                }}
+              >
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${video.embedId}`}
+                  title="YouTube video"
+                  frameBorder="0" //테두리 없음
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    border: "none",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+          {renderPaginationDots(youtubeVideos)}
         </div>
-        {renderPaginationDots(youtubeVideos)}
       </div>
 
       {/* 카드뉴스 섹션 */}
-      <div>
-        <h3
+      <div
+        style={{
+          position: "relative",
+          backgroundImage: `url(${process.env.PUBLIC_URL}/generated.jpg)`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          marginTop: "-5rem",
+          padding: "2rem 0 12rem 0", // 하단 패딩 증가
+        }}
+      >
+        {/* 오버레이 레이어 */}
+        <div
           style={{
-            fontSize: "2rem",
-            marginBottom: "2rem",
-            color: "#444",
-            paddingLeft: "75px",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "#E1DFD9",
+            opacity: 0.5,
           }}
-        >
-          카드 뉴스
-        </h3>
-        <div style={containerStyle}>
-          {getVisibleItems(cardNews).map((card, index) => (
-            <div
-              key={`${card.id}-${startIndex}-${index}`}
-              style={{
-                ...cardStyle,
-                aspectRatio: "4/3",
-                animationDelay: `${index * 0.1}s`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.08)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-              }}
-            >
-              <img
-                src={card.image}
-                alt={card.title}
+        />
+
+        {/* 컨텐츠 레이어 */}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <h3
+            style={{
+              fontSize: "2rem",
+              marginBottom: "3rem", // 마진 조정
+              color: "#444",
+              paddingLeft: "75px",
+            }}
+          >
+            카드 뉴스
+          </h3>
+          <div style={containerStyle}>
+            {getVisibleItems(cardNews).map((card, index) => (
+              <div
+                key={`${card.id}-${startIndex}-${index}`}
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
+                  ...cardStyle,
+                  aspectRatio: "4/3",
+                  animationDelay: `${index * 0.1}s`,
                 }}
-              />
-            </div>
-          ))}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.08)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                }}
+              >
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+          {renderPaginationDots(cardNews)}
         </div>
-        {renderPaginationDots(cardNews)}
       </div>
     </div>
   );
